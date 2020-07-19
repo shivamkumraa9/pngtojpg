@@ -1,0 +1,106 @@
+body {
+  font-family: "Open Sans", sans-serif;
+  color: #444444;
+}
+
+a {
+  color: #2487ce;
+}
+
+a:hover {
+  color: #469fdf;
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Raleway", sans-serif;
+}
+
+
+
+#header {
+  transition: all 0.5s;
+  background: #fff!important;
+  z-index: 997;
+  padding: 17px 0;
+  border-bottom: 1px solid #e6f2fb!important;
+}
+
+.logo {
+  font-size: 28px;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  font-family: "Poppins", sans-serif;
+}
+
+.logo {
+  color: #16507b;
+}
+
+@media (max-width: 992px) {
+  .logo {
+    font-size: 28px;
+  }
+}
+
+
+
+.nav-menu{
+  display: block;
+  position: relative;
+  color: #124265!important;
+  transition: 0.3s;
+  font-size: 14px!important;
+  font-family: "Open Sans", sans-serif!important;
+}
+
+.nav-menu:hover, .active, .nav-menu :hover{
+  color: #2487ce!important;
+}
+
+
+
+
+/* Get Startet Button */
+.get-started-btn {
+  margin-left: 25px;
+  background: #2487ce;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px 30px 11px 30px;
+  white-space: nowrap;
+  transition: 0.3s;
+  font-size: 14px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.get-started-btn:hover {
+  background: #2079b8;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .get-started-btn {
+    margin: 0 48px 0 0;
+    padding: 5px 18px 6px 18px;
+    border-radius: 3px;
+  }
+}
+
+
+
+#footer {
+  color: #444444;
+  font-size: 14px;
+  background: #f8fbfe;
+  box-shadow: 0px 2px 15px rgba(18, 66, 101, 0.08);
+}
+
+@media (min-width:600px){
+  .card,.card1{width: 28rem;}
+  .card2{width: 38rem;}
+}

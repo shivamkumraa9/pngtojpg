@@ -1,0 +1,48 @@
+{% extends "core/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+<title>Add Balance</title>
+{% endblock %}
+
+{% block content %}
+
+
+{% if CHECKOUT_SESSION_ID %}
+
+<script src="https://js.stripe.com/v3/"></script>
+<script type="text/javascript">
+	var stripe = Stripe('pk_test_51GzkYJAkCUXrZtDnOCzWLJB5vHezqcNLrZMy4ctkVrF72uChi6FkmjiN0eXTfUgWG4Mx4x8GIpTiqt1Rsbzqm4Kc00bKGdKiSK');
+	stripe.redirectToCheckout({
+	  // Make the id field from the Checkout Session creation API response
+	  // available to this file, so you can provide it as parameter here
+	  // instead of the {{CHECKOUT_SESSION_ID}} placeholder.
+	  sessionId: '{{CHECKOUT_SESSION_ID}}'
+	}).then(function (result) {
+	  // If `redirectToCheckout` fails due to a browser or network
+	  // error, display the localized error message to your customer
+	  // using `result.error.message`.
+	});
+</script>
+
+{% else %}
+
+	<div class="card m-auto shadow p-3 mb-5 bg-white rounded">
+		<h1 class="mt-3 text-center">Enter Amount</h1>
+	  <div class="card-body">
+		<form method="post">
+		{% csrf_token %}
+		{{ form|crispy }}
+		<input class="btn btn-primary btn-block" type="submit" value="Submit">
+		</form>
+	  </div>
+	</div>
+
+{% endif %}
+{% endblock content %}
+
+
+
+
+
+

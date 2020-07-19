@@ -1,0 +1,29 @@
+{% extends "core/base1.html" %}
+
+
+{% block content1 %}
+<div style="margin-top: 120px!important; margin-bottom: 50px;">
+  <div class="container">
+
+	{% if messages %}
+	<div class="messages m-auto card1">
+	  {% for message in messages %}
+	    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+	      {{ message }}
+	      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	        <span aria-hidden="true">&times;</span>
+	      </button>
+	    </div>
+	  {% endfor %}
+	</div>
+	{% endif %}
+
+    {% block content %}
+
+    {% endblock %}
+  </div>  
+</div>
+
+
+
+{% endblock %}
