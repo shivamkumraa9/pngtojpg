@@ -5,14 +5,12 @@ from django.shortcuts import render
 
 
 import os 
-import pdfkit
 
 from payments.models import Customer
 from core.forms import UploadFileForm
 
-
-PATH = os.path.join(os.getcwd(),"core","driver","software.deb")
-config = pdfkit.configuration(wkhtmltopdf=PATH)
+import io
+from PIL import Image
 
 
 def index(request):
@@ -30,31 +28,30 @@ def api_convert(request):
     if request.method == 'POST':
         token = request.POST.get("token")
         if token:
-            try:             
+            if 1:             
                 c = Customer.objects.get(token = token)
                 if c.balance >= 1:
                     form = UploadFileForm(request.POST, request.FILES)
                     if form.is_valid():
-                        html = b''
-                        name = request.FILES['file'].name[0:-5] + ".pdf"
-                        for i in request.FILES['file'].chunks():
-                            html += i
-                        html = html.decode()
-                        pdf = pdfkit.from_string(html, False,configuration = config) 
-                        response  =  HttpResponse(pdf,content_type='application/force-download')
-                        response['Content-Disposition'] = f'attachment; filename={name}'
+                        image = form.cleaned_data['file']
+                        image = Image.open(image).convert('RGB')
+                        with io.BytesIO() as f:
+                            image.save(f, format='JPEG',optimize=True,quality=70)
+                            imi = f.getvalue()
+                        response  =  HttpResponse(imi,content_type="image/jpeg")
+                        response['Content-Disposition'] = f'attachment; filename=image.jpg'
                         c.balance -= 1
                         c.save()
                         return response
                     else:
-                        error = ''
+                        error  = ''
                         for i in form.errors.as_data()['file']:
                             for j in i:
                                 error += j
                         return HttpResponseNotFound(error)
                 else:
                     return HttpResponseNotFound("Low Balance Kindly Recharge")
-            except:
+            else:
                 return HttpResponseNotFound("No Key Found")
         else:
             return HttpResponseNotFound("Wrong Key")

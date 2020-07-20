@@ -24,7 +24,7 @@
     <div class="card-body">
       <div class="row mb-3">
         <div class="col text-center">
-          <a href="{% url 'core:user_convert' %}" type="button" class="btn btn-success btn-block">Convert To Pdf</a>
+          <a href="{% url 'core:user_convert' %}" type="button" class="btn btn-success btn-block">Convert To Jpg</a>
         </div>
         <div class="col text-center">
           <a href="#" type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#exampleModal">Using Api</a>
@@ -60,15 +60,15 @@
               <code class="language-python">
 import requests
 
-token = "90cb162608ae115e10bd4751786b70b131d2ff9b"
+token = "{{request.user.customer.token}}"
 
 data = {'token':token}
-files = {'file': open('index.html','rb')}
+files = {'file': open('image.png','rb')}
 
 r = requests.post("http://localhost:8000/api-convert/",files = files,data = data)
 
 if r.status_code == 200:
-  with open("index.pdf","wb") as file:
+  with open("index.jpg","wb") as file:
     file.write(r.content)</code>
             </pre>  
 </div>
