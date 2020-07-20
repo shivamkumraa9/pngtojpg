@@ -28,7 +28,7 @@ def api_convert(request):
     if request.method == 'POST':
         token = request.POST.get("token")
         if token:
-            if 1:             
+            try:             
                 c = Customer.objects.get(token = token)
                 if c.balance >= 1:
                     form = UploadFileForm(request.POST, request.FILES)
@@ -51,7 +51,7 @@ def api_convert(request):
                         return HttpResponseNotFound(error)
                 else:
                     return HttpResponseNotFound("Low Balance Kindly Recharge")
-            else:
+            except:
                 return HttpResponseNotFound("No Key Found")
         else:
             return HttpResponseNotFound("Wrong Key")
