@@ -65,7 +65,7 @@ token = "{{request.user.customer.token}}"
 data = {'token':token}
 files = {'file': open('image.png','rb')}
 
-r = requests.post("http://localhost:8000/api-convert/",files = files,data = data)
+r = requests.post("http://pngtojpg.herokuapp.com/api-convert/",files = files,data = data)
 
 if r.status_code == 200:
   with open("index.jpg","wb") as file:

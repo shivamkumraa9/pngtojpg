@@ -112,4 +112,4 @@ def send_activation_email(request,user):
 	token = account_activation_token.make_token(user)
 	url = "http://" + site + reverse("users:activate",args = (uid,token))
 
-	send_mail('Long Pixel Email Verification',f'click here to confirm {url}.','testing@gmail.com',[user.email],fail_silently=False)
+	send_mail('Easy Jpg Email Verification',f'click here to confirm {url}.','testing@gmail.com',[user.email],fail_silently=False)
