@@ -12,7 +12,7 @@ class Customer(models.Model):
 
 
 class Intent(models.Model):
-	intent = models.CharField(max_length = 100,unique = True)
+	intent = models.CharField(max_length = 300,unique = True)
 
 	def __str__(self):
 		return self.intent
