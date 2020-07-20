@@ -8,9 +8,9 @@ from payments.models import Customer,Intent
 from payments.forms import AmountForm
 
 import stripe
+import os 
 
-
-stripe.api_key = 'sk_test_51GzkYJAkCUXrZtDnbcFTP9srjGSW6Hp15wcNVjsQO5sSJQeEhLwvISsZgESjCqULg9bySvT8JPykaCMe3pd1kUxC00Uvkv2jDx'
+stripe.api_key = os.environ['STRIPE']
 endpoint_secret = 'whsec_...'
 
 
