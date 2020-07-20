@@ -34,8 +34,8 @@ def add(request):
 			  }],
 		 
 			  mode='payment',
-			  success_url='http://localhost:8000/payments/success/{CHECKOUT_SESSION_ID}/',
-			  cancel_url='http://localhost:8000/payments/fail/',
+			  success_url='http://pngtojpg.herokuapp.com/payments/success/{CHECKOUT_SESSION_ID}/',
+			  cancel_url='http://pngtojpg.herokuapp.com/payments/fail/',
 			)
 			return render(request,"payments/add.html",{"CHECKOUT_SESSION_ID":session['id']})
 
